@@ -1,0 +1,23 @@
+{
+  "name": "slack-alerts",
+  "version": "1.0.0",
+  "description": "A Slack webhook to help monitor the status of Elastic Search servers using the Cluster API",
+  "main": "slackAlerts.js",
+  "dependencies": {
+    "https": "^1.0.0",
+    "http": "^0.0.0",
+    "async": "^2.0.0-rc.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js staging"
+  },
+  "keywords": [
+    "slack",
+    "monitor",
+    "elastic",
+    "elasticsearch"
+  ],
+  "author": "Teresa Wu",
+  "license": "ISC"
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Import Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Import custom CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <!-- Import Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- Import JQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- Import Utility javascript -->
+    <script type="text/javascript" src="js/util.js"></script>
+    <!-- Import Main javascript -->
+    <script type="text/javascript" src="js/dashboard.js"></script>
+    <!-- Import Bootstrap javascript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Navigation bar at the top -->
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Elastic Search Monitor</a>
+            </div>
+            <!-- Tabs -->
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container theme-showcase">
+        <div class="container-fluid">
+            
+            <!-- Page Header -->
+            <div class="page-header">
+                <h3 class="header_bar">Analytics Dashboard</h3>
+                <!-- Dropdown selection of clusters to view -->
+                <select id="clusters" onchange="refresh_page()" class="header_bar cluster_select">
+                </select>
+            </div>
+    
+            <!-- Current cluster name -->
+            <h4 class="header_bar">Cluster: &nbsp;</h4><h3 id="cluster_selected" class="header_bar"></h3>
+    
+            <!-- Warnings feed -->
+            <div class="page-header">
+                <h4>Warnings:</h4>
+            </div>
+            <div id="warning_feed" class="container-fluid scrollable-feed">
+                <div id="cluster_status" class="cluster_status">Cluster status is: ... </div>
+                <!-- Feed table -->
+                <table id="warning_feed_table" class="table">
+                    <th>Node</th>
+                    <th>Check</th>
+                    <th>Variable</th>
+                </table>
+            </div>
+    
+            <!-- Gauges -->
+            
+            <!-- CPU Gauges -->
+            <div class="row">
+                <div class="page-header">
+                    <h4>CPU Usage</h4>
+                </div>
+                <!-- Master -->
+                <div class="col-md-5">
+                    <p>Master</p>
+                    <div class="jumbotron jumbo">
+                        <div id="master_gauges_cpuData" class="gaugeContainer">
+                        </div>
+                    </div>
+                </div>
+                <!-- Data -->
+                <div class="col-md-5">
+                    <p>Data</p>
+                    <div class="jumbotron jumbo">
+                        <div id="data_gauges_cpuData" class="gaugeContainer">
+                        </div>
+                    </div>
+                </div>
+                <!-- Client -->
+                <div class="col-md-2">
+                    <p>Client</p>
+                    <div class="jumbotron jumbo">
+                        <div id="client_gauges_cpuData" class="gaugeContainer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- JVM heap usage -->
+            <div class="row">
+                <div class="page-header">
+                    <h4>JVM Heap Usage</h4>
+                </div>
+                <!-- Master -->
+                <div class="col-md-5">
+                    <p>Master</p>
+                    <div class="jumbotron jumbo">
+                        <div id="master_gauges_jvmData" class="gaugeContainer">
+                        </div>
+                    </div>
+                </div>
+                <!-- Data -->
+                <div class="col-md-5">
+                    <p>Data</p>
+                    <div class="jumbotron jumbo">
+                        <div id="data_gauges_jvmData" class="gaugeContainer">
+                        </div>
+                    </div>
+                </div>
+                <!-- Client -->
+                <div class="col-md-2">
+                    <p>Client</p>
+                    <div class="jumbotron jumbo">
+                        <div id="client_gauges_jvmData" class="gaugeContainer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+{
+  "staging" : {
+    "cluster_ip": "localhost:9200",
+    "master": {
+      "rejectedThreads": 0,
+      "dataSpace": 80
+    },
+    "data": {
+      "rejectedThreads": 0,
+      "dataSpace": 80
+    },
+    "client": {
+      "rejectedThreads": 0,
+      "dataSpace": 80
+    },
+    "options": {
+      "master": {
+        "jvmData": {
+          "max": 100,
+          "redFrom": 40,
+          "redTo": 100,
+          "yellowFrom": 25,
+          "yellowTo": 39,
+          "minorTicks": 10,
+          "width": 400,
+          "height": 120
+        },
+        "cpuData": {
+          "max": 100,
+          "redFrom": 40,
+          "redTo": 100,
+          "yellowFrom": 25,
+          "yellowTo": 39,
+          "minorTicks": 10,
+          "width": 400,
+          "height": 120
+        }
+      },
+      "data": {
+        "jvmData": {
+          "max": 100,
+          "redFrom": 40,
+          "redTo": 100,
+          "yellowFrom": 25,
+          "yellowTo": 39,
+          "minorTicks": 10,
+          "width": 400,
+          "height": 120
+        },
+        "cpuData": {
+          "max": 100,
+          "redFrom": 40,
+          "redTo": 100,
+          "yellowFrom": 25,
+          "yellowTo": 39,
+          "minorTicks": 10,
+          "width": 400,
+          "height": 120
+        }
+      },
+      "client": {
+        "jvmData": {
+          "max": 100,
+          "redFrom": 40,
+          "redTo": 100,
+          "yellowFrom": 25,
+          "yellowTo": 39,
+          "minorTicks": 10,
+          "width": 400,
+          "height": 120
+        },
+        "cpuData": {
+          "max": 100,
+          "redFrom": 40,
+          "redTo": 100,
+          "yellowFrom": 25,
+          "yellowTo": 39,
+          "minorTicks": 10,
+          "width": 400,
+          "height": 120
+        }
+      }
+    }
+  }
+}

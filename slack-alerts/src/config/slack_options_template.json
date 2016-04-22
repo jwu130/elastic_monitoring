@@ -1,0 +1,43 @@
+{
+	"slackoptions" : {
+		"host" : "hooks.slack.com",
+		"path" : "<webhook_path>",
+		"method" : "POST",
+		"headers" : {
+			"Content-Type": "application/json"
+		}
+	},
+	"json_message" : {
+	    "icon_emoji" : ":warning:",
+	    "username" : "Slack Alerts",
+	    "attachments": [
+	        {
+	            "title": "Warning",
+	            "title_link": ""
+	        }
+	    ]
+	},
+	"cluster_status_request_opt" : {
+	    "host" : "<server_ip>",
+	    "port" : "<server_port>",
+	    "path" : "/_cluster/health",
+	    "method" : "GET"
+	},
+	"node_status_request_opt" : {
+		"host" : "<server_ip>",
+	    "port" : "<server_port>",
+	    "path" : "/_nodes/stats",
+	    "method" : "GET"
+	},
+	"message" : "Warning: Issue in servers, check <<dashboard_application_url>|dashboard>! ",
+	"cluster_message" : "Failing cluster health in CLUSTER_NAME, check <<dashboard_application_url>|dashboard>! ",
+	"rejected_threads_message" : "There is a lot of rejected threads in CLUSTER_NAME, check <<dashboard_application_url>|dashboard>! ",
+	"disk_space_message" : "Disk spaces low in CLUSTER_NAME, check <<dashboard_application_url>|dashboard>! ",
+	"color_scheme" : {
+		"red" : "danger",
+		"yellow" : "warning",
+		"green" : "good"
+	},
+	"polling_interval" : 500,
+	"message_reset" : 120000
+}

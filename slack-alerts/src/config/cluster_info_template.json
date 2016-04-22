@@ -1,0 +1,17 @@
+{
+  "<cluster_name>" : {
+    "cluster_ip": "<ip_address>:<ports>",
+    "master": {
+      "rejectedThreads": <maximum_numb_of_rejected_threads>,
+      "dataSpace": <maximum_percentage_of_memory_left>
+    },
+    "data": {
+      "rejectedThreads": <maximum_numb_of_rejected_threads>,
+      "dataSpace": <maximum_percentage_of_memory_left>
+    },
+    "client": {
+      "rejectedThreads": <maximum_numb_of_rejected_threads>,
+      "dataSpace": <maximum_percentage_of_memory_left>
+    }
+  }
+}

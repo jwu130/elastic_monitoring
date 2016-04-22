@@ -1,0 +1,4 @@
+{
+  "node_stat": "/_nodes/stats",
+  "cluster_health": "/_cluster/health"
+}

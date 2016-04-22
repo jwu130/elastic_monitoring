@@ -1,0 +1,32 @@
+{
+  "staging" : {
+    "cluster_ip": "localhost:9200",
+    "master": {
+      "rejectedThreads": 0,
+      "dataSpace": 100
+    },
+    "data": {
+      "rejectedThreads": 0,
+      "dataSpace": 100
+    },
+    "client": {
+      "rejectedThreads": 0,
+      "dataSpace": 100
+    }
+  },
+  "testing123" : {
+    "cluster_ip": "localhost:9200",
+    "master": {
+      "rejectedThreads": 0,
+      "dataSpace": 80
+    },
+    "data": {
+      "rejectedThreads": 0,
+      "dataSpace": 82
+    },
+    "client": {
+      "rejectedThreads": 0,
+      "dataSpace": 100
+    }
+  }
+}

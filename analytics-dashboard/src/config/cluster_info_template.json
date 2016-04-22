@@ -1,0 +1,85 @@
+{
+  "<cluster_name>" : {
+    "cluster_ip": "<ip_address>:<ports>",
+    "master": {
+      "rejectedThreads": <maximum_numb_of_rejected_threads>,
+      "dataSpace": <maximum_percentage_of_memory_left>
+    },
+    "data": {
+      "rejectedThreads": <maximum_numb_of_rejected_threads>,
+      "dataSpace": <maximum_percentage_of_memory_left>
+    },
+    "client": {
+      "rejectedThreads": <maximum_numb_of_rejected_threads>,
+      "dataSpace": <maximum_percentage_of_memory_left>
+    },
+    "options": {
+      "master": {
+        "jvmData": {
+          "max": <maximum_value_on_gauge>,
+          "redFrom": <low_range_for_red>,
+          "redTo": <high_range_for_red>,
+          "yellowFrom": <low_range_for_yellow>,
+          "yellowTo": <high_range_for_yellow>,
+          "minorTicks": <ticks_on_gauges>,
+          "width": <width_of_guage>,
+          "height": <height_of_gauge>
+        },
+        "cpuData": {
+          "max": <maximum_value_on_gauge>,
+          "redFrom": <low_range_for_red>,
+          "redTo": <high_range_for_red>,
+          "yellowFrom": <low_range_for_yellow>,
+          "yellowTo": <high_range_for_yellow>,
+          "minorTicks": <ticks_on_gauges>,
+          "width": <width_of_guage>,
+          "height": <height_of_gauge>
+        }
+      },
+      "data": {
+        "jvmData": {
+          "max": <maximum_value_on_gauge>,
+          "redFrom": <low_range_for_red>,
+          "redTo": <high_range_for_red>,
+          "yellowFrom": <low_range_for_yellow>,
+          "yellowTo": <high_range_for_yellow>,
+          "minorTicks": <ticks_on_gauges>,
+          "width": <width_of_guage>,
+          "height": <height_of_gauge>
+        },
+        "cpuData": {
+          "max": <maximum_value_on_gauge>,
+          "redFrom": <low_range_for_red>,
+          "redTo": <high_range_for_red>,
+          "yellowFrom": <low_range_for_yellow>,
+          "yellowTo": <high_range_for_yellow>,
+          "minorTicks": <ticks_on_gauges>,
+          "width": <width_of_guage>,
+          "height": <height_of_gauge>
+        }
+      },
+      "client": {
+        "jvmData": {
+          "max": <maximum_value_on_gauge>,
+          "redFrom": <low_range_for_red>,
+          "redTo": <high_range_for_red>,
+          "yellowFrom": <low_range_for_yellow>,
+          "yellowTo": <high_range_for_yellow>,
+          "minorTicks": <ticks_on_gauges>,
+          "width": <width_of_guage>,
+          "height": <height_of_gauge>
+        },
+        "cpuData": {
+          "max": <maximum_value_on_gauge>,
+          "redFrom": <low_range_for_red>,
+          "redTo": <high_range_for_red>,
+          "yellowFrom": <low_range_for_yellow>,
+          "yellowTo": <high_range_for_yellow>,
+          "minorTicks": <ticks_on_gauges>,
+          "width": <width_of_guage>,
+          "height": <height_of_gauge>
+        }
+      }
+    }
+  }
+}
