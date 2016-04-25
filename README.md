@@ -25,3 +25,5 @@ The applications can be customized to monitor Elastic servers for different stat
 - async Node Module
 - [Cluster API 2.3](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/cluster.html)
 - [Slack API](https://api.slack.com/)
+
+To view screenshots goto: http://jwu130.github.io/elastic_monitoring/ 
