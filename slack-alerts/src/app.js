@@ -5,9 +5,9 @@ var http = require('http');
 var async = require('async');
 
 // Import external json and js files
-var slack_options = require('./slack_options.json');
-var cluster_info = require('./cluster_info.json');
-var utility = require('./utility');
+var slack_options = require('./config/slack_options.json');
+var cluster_info = require('./config/cluster_info.json');
+var utility = require('./utility/utility');
 
 // Slack options
 var options = slack_options.slackoptions;
