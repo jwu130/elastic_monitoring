@@ -1,0 +1,20 @@
+---
+
+vm_size: Standard_A2
+resource_group: resource_group
+vm_name: elastic-monitor
+location: eastus2
+machine_type: Linux
+version: canonical:ubuntuserver:14.04.2-LTS:latest 
+admin_user: monitor
+admin_pass: admin_pass123@
+vnet_name: elastic_monitor
+vnet_subnet_name: elastic_monitor
+vnet_address: <vnet_address>
+vnet_subnet_address: <vnet_subnet_address>
+public_ip_name: elastic_monitor_ip
+nic_name: elastic_monitor_nic
+security_group_name: elastic_monitor_security
+subnet_name: elastic_monitor
+
+...

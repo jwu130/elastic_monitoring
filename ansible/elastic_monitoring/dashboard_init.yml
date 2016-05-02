@@ -1,0 +1,85 @@
+---
+- hosts: "{{host_group}}"
+  become: true
+  become_method: sudo
+
+  vars_files:
+  - vars/apache_vars.yml
+  - vars/localhost_vars.yml
+  - vars/machine_vars.yml
+  - vars/remote_mach_vars.yml
+  - vars/machine_ip.yml
+
+  vars_prompt:
+  - name: "webhook"
+    prompt: "Please enter your webhook path"
+    private: no
+
+  tasks: 
+  # Remove all files already in public html dashboard.com
+  - name: Remove any previous files 
+    file: state=absent path={{public_html}}
+
+  # Clone github project to home
+  - name: Clone github repository
+    git: 
+      repo="https://github.com/jwu130/elastic_monitoring.git"
+      dest="/home/{{admin_user}}/elastic-monitoring-tools"
+      force=yes
+
+  # Add the configurations for webhook
+  - name: Add webhook information
+    replace: 
+      dest="/home/{{admin_user}}/elastic-monitoring-tools/slack-alerts/dist/config/slack_options.json"
+      regexp='services\/T00000000\/B00000000\/XXXXXXXXXXXXXXXXXXXXXXXX'
+      replace={{webhook}}
+      backup=no
+
+  # Make public html directory structure if not already available
+  - name: Make public directory structure
+    file: path="{{public_html}}" state=directory mode=0755
+
+  # Move files for dashboard site to public html folder
+  - name: Move dashboard files to public folder
+    command: cp "/home/{{admin_user}}/elastic-monitoring-tools/analytics-dashboard/dist/index.html" {{public_html}}
+
+  - command: cp -r "/home/{{admin_user}}/elastic-monitoring-tools/analytics-dashboard/dist/styles" {{public_html}}
+
+  - command: cp -r "/home/{{admin_user}}/elastic-monitoring-tools/analytics-dashboard/dist/config" {{public_html}}
+
+  - command: cp -r "/home/{{admin_user}}/elastic-monitoring-tools/analytics-dashboard/dist/scripts" {{public_html}}
+
+
+  # Render Jinja2 virtual host configuration template and save to remote server
+  - name: Render dashboard virtual host configuration
+    template: 
+      src="/home/{{local_user}}/webserver/templates/dashboard.j2"
+      dest=/etc/apache2/sites-available/dashboard.conf 
+      force=yes
+
+  - name: Create symbolic link of dashboard configuration
+    file: 
+      src=/etc/apache2/sites-available/dashboard.conf
+      dest=/etc/apache2/sites-enabled/dashboard.conf 
+      state=link
+
+  - name: Render apache main configuration 
+    template: 
+      src="/home/{{local_user}}/webserver/templates/apache2.j2"
+      dest=/etc/apache2/apache2.conf
+      force=yes
+
+  - name: Remove default page
+    file: state=absent path=/etc/apache2/sites-enabled/000-default.conf
+
+  - name: Restart apache server
+    service: name=apache2 state=restarted
+
+  - name: npm install
+    command: npm install chdir=/home/{{admin_user}}/elastic-monitoring-tools/slack-alerts/dist
+
+  # Start the Elastic servers slack notifications app
+  - name: Start slack alerts 
+    shell: daemon -- nodejs "/home/{{admin_user}}/elastic-monitoring-tools/slack-alerts/dist/app.js" staging
+    async: 45
+...

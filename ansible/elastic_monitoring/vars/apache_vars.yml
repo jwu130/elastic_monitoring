@@ -1,0 +1,6 @@
+---
+
+public_html: /var/www/dashboard.com/public_html
+index_page: index.html
+
+...

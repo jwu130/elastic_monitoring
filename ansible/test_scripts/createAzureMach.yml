@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: true
+  become_method: sudo
+  become: "{{local_user}}"
+  connection: local
+
+  tasks:
+  - name: Create Machine
+    shell: azure vm quick-create --vm-size Standard_A2 {{resource_group}} {{vm_name}} {{location}} {{machine_type}} {{version}} {{admin_user}} {{admin_pass}}
+...

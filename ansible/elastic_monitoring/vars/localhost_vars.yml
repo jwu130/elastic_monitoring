@@ -1,0 +1,7 @@
+---
+
+local_user: alert
+host_group: dashboard
+elastic_ansible: /home/alert/webserver
+
+...

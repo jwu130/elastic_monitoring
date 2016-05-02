@@ -1,0 +1,10 @@
+---
+- hosts: local
+  become_user: "{{local_user}}"
+  connection: local
+  become: yes  
+
+  tasks:
+   - name: start vm
+     command: azure vm start {{resource_group}} {{vm_name}}
+...

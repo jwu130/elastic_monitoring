@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  become: true
+  become_method: sudo
+  become: "{{local_user}}"
+  connection: local
+
+  vars:
+#    prompt: '\u001b[32minfo\u001b[39m:    Executing command \u001b[1mvm delete\u001b[22m\r\n\r                                                                               \r\u001b[36m-\u001b[39m Looking up the VM \"slack-alert-mach\"\r\u001b[36m\\\u001b[39m\r\u001b[36m|\u001b[39m\r+\r\nDelete the virtual machine \"slack-alert-mach\"? [y/n]'
+    prompt: (.*)Delete the virtual machine(.*)
+
+  tasks:
+  - name: Destroy Machine
+    expect:
+      command: azure vm delete {{resource_group}} {{vm_name}}
+      timeout: 300000
+      responses:
+         (.*)machine(.*): "y"
+...

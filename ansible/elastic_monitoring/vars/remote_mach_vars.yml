@@ -1,0 +1,6 @@
+---
+
+host_group: dashboard
+admin_user: monitor
+
+...

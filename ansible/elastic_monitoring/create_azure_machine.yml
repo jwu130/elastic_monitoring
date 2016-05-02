@@ -1,0 +1,61 @@
+---
+- hosts: localhost
+  remote_user: "{{local_user}}"
+  become: true
+  become_method: sudo
+  connection: local
+
+  vars_files:
+  - vars/machine_vars.yml
+  - vars/localhost_vars.yml
+
+  tasks:
+  # - name: Create public ip
+  #   local_action: shell azure network public-ip create -a "Static" -g {{resource_group}} -n {{public_ip_name}} -l {{location}} 
+  #   become_user: alert
+
+  # - name: Create network interface card
+  #   local_action: shell azure network nic create {{resource_group}} {{nic_name}} {{location}} --subnet-name {{subnet_name}} --subnet-vnet-name {{vnet_subnet_name}} --public-ip-name {{public_ip_name}} --network-security-group-name {{security_group_name}}
+  #   become_user: alert
+
+  # - name: Set ip address of network interface card
+  #   local_action: shell azure network nic set --public-ip-name {{public_ip_name}}
+
+  #  Create machine on azure platform with vm create
+  #  These lines have a bug. The virtual machine created does also create a public ip
+  # - name: Create Machine
+  #   local_action: shell azure vm create --vm-size {{vm_size}} --image-urn {{version}} --admin-username {{admin_user}} --admin-password {{admin_pass}} --vnet-name {{vnet_name}} --vnet-subnet-name {{vnet_subnet_name}} --vnet-subnet-address-prefix {{vnet_subnet_address}} --nic-name {{nic_name}} --vnet-address-prefix {{vnet_address}} {{resource_group}} {{vm_name}} {{location}} {{machine_type}}
+  #   become_user: "{{local_user}}"
+
+  # Create machine on azure platform with vm quick-create
+  # Note: does not include network interface specification
+  - name: Create Machine
+    shell: azure vm quick-create --vm-size {{vm_size}} {{resource_group}} {{vm_name}} {{location}} {{machine_type}} {{version}} {{admin_user}} {{admin_pass}} 
+    become_user: "{{local_user}}"
+
+  # Save the ip address from azure command line
+  - name: get new mach ip
+    become_user: "{{local_user}}"
+    local_action: shell azure vm show {{resource_group}} {{ vm_name }} | grep Public
+    register: machine_info
+
+  # Remove the unrelated text and have the ip address as a variable  
+  - set_fact: ip_address="{{machine_info.stdout | regex_replace('[\s,data,\:,PublicIPaddress]*', '')}}"
+
+  # Print the ip for debugging
+  - debug: var=ip_address
+  
+  # Rewrite and replace the host file that includes the ip address of the new machine  
+  - name: rewriting hosts file
+    template:
+      src="{{elastic_ansible}}/templates/hostfile_template.j2"
+      dest="/etc/ansible/hosts"
+      force=yes
+
+  # creating a variable file to store the ip address for later reference
+  - name: Save new machines ip address
+    local_action: template 
+      src="{{local_path}}/templates/machine_ip.j2"
+      dest="{{local_path}}/vars/machine_ip.yml"
+      force=yes
+...
