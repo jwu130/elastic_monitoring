@@ -34,15 +34,16 @@ An example of the cluster_info.json file is provided as cluster_info_sample.json
 #### Set Up
 
 Assuming Elastic is running on your local machine:  
-Deploy and host on a web server. Once the application is online, access dashboard.html
+- Deploy and host these files on a web server. Once the application is online, access index.html
 
-If Elastic is running on a external server:  
-Edit your config\cluster_api.json file to include the correct ip addresses. A template is provided in src\config-templates
-Then again, deploy and host the web application on a web server. 
+If Elastic is running on a external server, not on your local machine:  
+- Edit your config\cluster_api.json file to include the correct ip addresses. A template is provided in src\config-templates  
+- Then again, deploy and host the web application on a web server
 
 ---
 
 #### Improvements/Future Extensions
 
-Allow for an option to refresh the page at certain intervals
-HTTP API call can be made simply one time on the loading/re-loading of the page.
+- Allow for an option to refresh the page at certain intervals
+- HTTP API call can be made simply one time on the loading/re-loading of the page.
+- Some servers do not specify the "attribute" attribute for the nodes: nodes are not separated as master, data, and clients. Allow the web app to work for different cluster architectures
