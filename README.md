@@ -8,6 +8,8 @@ In this project there are two tools that can serve as an alternative to the moni
 
 2. Slack Alerts - A notification app that alerts you on anomolies in your Elastic servers so you can take action quickly 
 
+3. Ansible project - The ansible folder contains scripts intended to be used to automate the deployment of the elastic monitoring tools as well as some scripts that I have experimented with.
+
 The applications can be customized to monitor Elastic servers for different statistics.
 
 #### Pre-Requisites:
